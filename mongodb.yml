@@ -25,9 +25,6 @@
         name: mongodb
         image: mongo:latest
     - name: attach volume to host
-      os_server_volume:
-        state: present
-        cloud: mordred
-        server: mongodb-server
-        volume: mongodb-data
-        device: /dev/vdb
+      volumes:
+       - mydbdata:/data/db
+
