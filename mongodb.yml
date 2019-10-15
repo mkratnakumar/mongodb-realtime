@@ -1,4 +1,5 @@
 ---
+
 - hosts: k8s1
   become: True
   tasks:
@@ -24,7 +25,9 @@
       docker_container:
         name: mongodb
         image: mongo:latest
-    - name: attach volume to host
-      volumes:
-       - mydbdata:/data/db
-
+        ports:
+          - "27017:27017"
+        volumes:
+          - mydbdata:/data/db 
+          - mongo-config:/data/configdb 
+        
